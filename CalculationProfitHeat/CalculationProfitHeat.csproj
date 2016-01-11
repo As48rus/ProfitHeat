@@ -42,6 +42,11 @@
   <ItemGroup>
     <Compile Include="Cladding\Door.cs" />
     <Compile Include="Cladding\Floor.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Ventilation.cs" />
     <Compile Include="Window\Gas.cs" />
     <Compile Include="Window\Glazed.cs" />
@@ -60,7 +65,12 @@
     <Compile Include="Cladding\Cladding.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
