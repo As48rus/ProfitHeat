@@ -9,7 +9,7 @@ namespace CalculationProfitHeat
     /// <summary>
     /// Окно
     /// </summary>
-    public class Window : IHeatLoss
+    public class Window 
     {
 		/// <summary>
 		/// площадь

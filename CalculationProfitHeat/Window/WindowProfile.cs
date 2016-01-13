@@ -9,7 +9,7 @@ namespace CalculationProfitHeat
     /// <summary>
     /// оконный профиль
     /// </summary>
-    public class WindowProfile : IHeatLoss
+    public class WindowProfile 
     {
         /// <summary>
 		/// площадь
@@ -20,14 +20,20 @@ namespace CalculationProfitHeat
         /// </summary>
         public int CountCameras { get; set; }
         /// <summary>
+        /// толщина профиля
+        /// </summary>
+        public int Thickness { get; set; }
+        /// <summary>
         /// теплосопротивление (м² * °С / Вт)
         /// </summary>
         public double HeatResistance { get; set; }
 
-        public WindowProfile(double area, int countCameras)
+        public WindowProfile(double area, int countCameras, int thickness)
         {
             Area = area;
-            HeatResistance = WorkWithDatabase.GetCoefficientThermalResistance(CountCameras);
+            CountCameras = countCameras;
+            Thickness = thickness;
+            HeatResistance = WorkWithDatabase.GetCoefficientThermalResistance(CountCameras, Thickness);
         }
 
         /// <summary>

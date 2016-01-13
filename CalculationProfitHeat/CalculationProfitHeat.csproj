@@ -50,7 +50,6 @@
     <Compile Include="Ventilation.cs" />
     <Compile Include="Window\Gas.cs" />
     <Compile Include="Window\Glazed.cs" />
-    <Compile Include="IHeatLoss.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadiatorType.cs" />

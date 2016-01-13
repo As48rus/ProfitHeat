@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculationProfitHeat
 {
-    public class Room : IHeatLoss
+    public class Room 
     {
 		/// <summary>
 		/// название
@@ -19,7 +19,7 @@ namespace CalculationProfitHeat
 		/// <summary>
 		/// тип комнаты
 		/// </summary>
-		string TypeRoom { get; set; }
+		public string TypeRoom { get; set; }
 		/// <summary>
 		/// тип радиатора
 		/// </summary>
@@ -58,8 +58,9 @@ namespace CalculationProfitHeat
         /// <summary>
         /// теплопотери комнаты
         /// </summary>
-        public double GetHeatLoss(double dT)
+        public double GetHeatLoss(string sity)
         {
+            double dT = WorkWithDatabase.GetTRoom(TypeRoom) - WorkWithDatabase.GetdTSity(sity);
             foreach(var cladding in Claddings)
                 HeatLoss += cladding.GetHeatLoss(dT);
 

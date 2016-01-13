@@ -112,7 +112,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// Коэффициент теплосопротивления (м² * °С / Вт)
         /// </summary>
-        public static double GetCoefficientThermalResistance(int countCameras)
+        public static double GetCoefficientThermalResistance(int countCameras, int thickness)
         {
             throw new NotImplementedException();
         }
@@ -137,6 +137,14 @@ namespace CalculationProfitHeat
         /// перепад температур между помещением и улицей
         /// </summary>
         public static double GetdTSity(string sity)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// нормальная температура в комнате
+        /// </summary>
+        public static double GetTRoom(string typeRoom)
         {
             throw new NotImplementedException();
         }

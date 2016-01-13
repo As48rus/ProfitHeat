@@ -82,11 +82,11 @@ namespace ProfitHeat
 
         private Cladding GetAllCladding(DataGridView dgw)
         {
-            double area = (double)dgw[0, 0].Value;
+            double area = Convert.ToDouble(dgw[0, 0].Value);
             Cladding cladding = new Cladding(area);
             for (int i = 0; i < dgw.RowCount; i++)
             {
-                double thickness = (double)dgw[1, i].Value;
+                double thickness = Convert.ToDouble(dgw[1, i].Value);
                 string nameMaterial = dgw[2, i].Value.ToString();
                 cladding.Materials.Add(new Material(thickness, nameMaterial));
             }
@@ -98,9 +98,9 @@ namespace ProfitHeat
             List<Window> windows = new List<Window>();
             for (int i = 0; i < dgw.RowCount; i++)
             {
-                double area = (double)dgw[0, i].Value;
+                double area = Convert.ToDouble(dgw[0, i].Value);
                 Glazed glazed = new Glazed(dgw[1,i].Value.ToString());
-                WindowProfile wp = new WindowProfile((double)dgw[2, i].Value, (int)dgw[3, i].Value);
+                WindowProfile wp = new WindowProfile(Convert.ToDouble(dgw[2, i].Value), Convert.ToInt32(dgw[3, i].Value), Convert.ToInt32(dgw[4, i].Value));
                 windows.Add(new Window(area, glazed, wp));
             }
             return windows;

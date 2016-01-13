@@ -9,7 +9,7 @@ namespace CalculationProfitHeat
     /// <summary>
     /// вентиляция
     /// </summary>
-    public class Ventilation : IHeatLoss
+    public class Ventilation 
     {
         /// <summary>
         /// расчетная кратность воздухообмена 0,3 - для комант, 0,8 - для помещений с камином и подобных им, 1,0 - для кухонь и санузлов

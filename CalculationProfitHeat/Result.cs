@@ -42,7 +42,7 @@ namespace CalculationProfitHeat
         {
             double HeatLoss = 0;
             foreach (var room in Rooms)
-                HeatLoss += room.GetHeatLoss(dT);
+                HeatLoss += room.GetHeatLoss(room.TypeRoom);
             return (int)Math.Ceiling(HeatLoss);
         }
         /// <summary>

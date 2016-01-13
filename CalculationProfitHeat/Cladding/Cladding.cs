@@ -10,7 +10,7 @@ namespace CalculationProfitHeat
     /// <summary>
     /// Ограждаюжая конструкция
     /// </summary>
-    public class Cladding : IHeatLoss
+    public class Cladding 
     {
 		/// <summary>
 		/// площадь
