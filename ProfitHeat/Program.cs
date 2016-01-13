@@ -16,7 +16,7 @@ namespace ProfitHeat
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form_Аутентификация());
+			Application.Run(new Form_User());
 		}
 	}
 }

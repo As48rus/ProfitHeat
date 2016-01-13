@@ -25,7 +25,7 @@ namespace CalculationProfitHeat
         {
             Thickness = thickness;
             Name = name;
-            HeatConductivity = new WorkWithDatabase().GetCoefficientThermalConductivity(Name);
+            HeatConductivity = WorkWithDatabase.GetCoefficientThermalConductivity(Name);
         }
         /// <summary>
         /// теплосопротивление (м² * °С / Вт)

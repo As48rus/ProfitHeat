@@ -66,7 +66,7 @@ namespace CalculationProfitHeat
         /// </summary>
         public double GetHeatLoss(double dT)
         {
-            HeatResistance = new WorkWithDatabase().GetCoefficientThermalResistance("");
+            HeatResistance = WorkWithDatabase.GetCoefficientThermalResistance("");
             return Area * (dT) / HeatResistance;
         }
     }

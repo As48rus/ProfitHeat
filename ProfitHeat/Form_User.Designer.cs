@@ -40,10 +40,10 @@
             this.textBox_diametr = new System.Windows.Forms.TextBox();
             this.textBox_capacity = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Comnaty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CountSekciy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.button_Sum = new System.Windows.Forms.Button();
+            this.Comnaty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CountSekciy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,11 +58,13 @@
             // 
             // comboBox_sity
             // 
+            this.comboBox_sity.DisplayMember = "Name";
             this.comboBox_sity.FormattingEnabled = true;
             this.comboBox_sity.Location = new System.Drawing.Point(12, 28);
             this.comboBox_sity.Name = "comboBox_sity";
             this.comboBox_sity.Size = new System.Drawing.Size(131, 21);
             this.comboBox_sity.TabIndex = 2;
+            this.comboBox_sity.ValueMember = "Name";
             // 
             // AddRoom
             // 
@@ -123,6 +125,7 @@
             // 
             this.textBox_power.Location = new System.Drawing.Point(176, 148);
             this.textBox_power.Name = "textBox_power";
+            this.textBox_power.ReadOnly = true;
             this.textBox_power.Size = new System.Drawing.Size(100, 20);
             this.textBox_power.TabIndex = 14;
             // 
@@ -130,6 +133,7 @@
             // 
             this.textBox_diametr.Location = new System.Drawing.Point(176, 174);
             this.textBox_diametr.Name = "textBox_diametr";
+            this.textBox_diametr.ReadOnly = true;
             this.textBox_diametr.Size = new System.Drawing.Size(100, 20);
             this.textBox_diametr.TabIndex = 15;
             // 
@@ -137,6 +141,7 @@
             // 
             this.textBox_capacity.Location = new System.Drawing.Point(176, 200);
             this.textBox_capacity.Name = "textBox_capacity";
+            this.textBox_capacity.ReadOnly = true;
             this.textBox_capacity.Size = new System.Drawing.Size(100, 20);
             this.textBox_capacity.TabIndex = 16;
             // 
@@ -153,18 +158,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(295, 150);
             this.dataGridView1.TabIndex = 17;
-            // 
-            // Comnaty
-            // 
-            this.Comnaty.HeaderText = "Комнаты";
-            this.Comnaty.Name = "Comnaty";
-            this.Comnaty.ReadOnly = true;
-            // 
-            // CountSekciy
-            // 
-            this.CountSekciy.HeaderText = "Количество секций";
-            this.CountSekciy.Name = "CountSekciy";
-            this.CountSekciy.ReadOnly = true;
             // 
             // label4
             // 
@@ -186,6 +179,19 @@
             this.button_Sum.UseVisualStyleBackColor = true;
             this.button_Sum.Click += new System.EventHandler(this.button_Sum_Click);
             // 
+            // Comnaty
+            // 
+            this.Comnaty.HeaderText = "Комнаты";
+            this.Comnaty.Name = "Comnaty";
+            this.Comnaty.ReadOnly = true;
+            this.Comnaty.Width = 150;
+            // 
+            // CountSekciy
+            // 
+            this.CountSekciy.HeaderText = "Количество секций";
+            this.CountSekciy.Name = "CountSekciy";
+            this.CountSekciy.ReadOnly = true;
+            // 
             // Form_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +212,7 @@
             this.Controls.Add(this.comboBox_sity);
             this.Controls.Add(this.label1);
             this.Name = "Form_User";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пользователь";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -227,9 +234,9 @@
 		private System.Windows.Forms.TextBox textBox_diametr;
 		private System.Windows.Forms.TextBox textBox_capacity;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Comnaty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CountSekciy;
 		private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_Sum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CountSekciy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comnaty;
     }
 }

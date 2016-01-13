@@ -3,31 +3,108 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data.Common;
+using System.Collections;
 
 namespace CalculationProfitHeat
 {
     /// <summary>
     /// работа с базой даных
     /// </summary>
-    class WorkWithDatabase
+    public static class WorkWithDatabase
     {
-        public void CreateConnection()
+        /// <summary>
+        /// строка подключения
+        /// </summary>
+        readonly static string connectionString = @"Data Source=HOME\SQLEXPRESS;Initial Catalog=ProfitHeat;Integrated Security=True";
+
+        /// <summary>
+        /// результат зарпроса Select
+        /// </summary>
+        public static ArrayList GetQueryResultsSelect(string request)
         {
-            throw new NotImplementedException();
+            ArrayList result = new ArrayList();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                
+                SqlCommand com = new SqlCommand(request, con);
+                con.Open();
+                SqlDataReader dr = com.ExecuteReader();
+                if (dr.HasRows)
+                    foreach (var res in dr)
+                        result.Add(res);
+            }
+            return result;
         }
 
         /// <summary>
-        /// результат зарпроса
+        /// список городов
         /// </summary>
-        public void GetQueryResults()
+        public static ArrayList GetAllSity()
         {
-            throw new NotImplementedException();
+            string request = "select Name from Sity";
+            return GetQueryResultsSelect(request);
+        }
+
+        /// <summary>
+        /// список типов комнат
+        /// </summary>
+        public static ArrayList GetAllTypeRooms()
+        {
+            string request = "select Name from TypeRoom";
+            return GetQueryResultsSelect(request);
+        }
+
+        /// <summary>
+        /// список типов радиаторов
+        /// </summary>
+        public static ArrayList GetAllTypeRadiator()
+        {
+            string request = "select Material from RadiatorType";
+            return GetQueryResultsSelect(request);
+        }
+
+        /// <summary>
+        /// список материалов
+        /// </summary>
+        public static ArrayList GetAllMaterials()
+        {
+            string request = "select Name from Materials";
+            return GetQueryResultsSelect(request);
+        }
+
+        /// <summary>
+        /// список стеклопакетов
+        /// </summary>
+        public static ArrayList GetAllGlazedes()
+        {
+            string request = "select Name from Glazed";
+            return GetQueryResultsSelect(request);
+        }
+
+        /// <summary>
+        /// список профилей(толщина)
+        /// </summary>
+        public static ArrayList GetAllWindowProfilesThickness()
+        {
+            string request = "select distinct Thickness from WindowProfiles";
+            return GetQueryResultsSelect(request);
+        }
+
+        /// <summary>
+        /// список профилей(количество камер)
+        /// </summary>
+        public static ArrayList GetAllWindowProfilesCountCameras()
+        {
+            string request = "select distinct CountCameras from WindowProfiles";
+            return GetQueryResultsSelect(request);
         }
 
         /// <summary>
         /// Коэффициент теплопроводности (Вт / (м * °С))
         /// </summary>
-        public double GetCoefficientThermalConductivity(string nameMaterial)
+        public static double GetCoefficientThermalConductivity(string nameMaterial)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +112,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// Коэффициент теплосопротивления (м² * °С / Вт)
         /// </summary>
-        public double GetCoefficientThermalResistance(int countCameras)
+        public static double GetCoefficientThermalResistance(int countCameras)
         {
             throw new NotImplementedException();
         }
@@ -43,7 +120,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// Коэффициент теплосопротивления (м² * °С / Вт)
         /// </summary>
-        public double GetCoefficientThermalResistance(string formulaGlass)
+        public static double GetCoefficientThermalResistance(string formulaGlass)
         {
             throw new NotImplementedException();
         }
@@ -51,7 +128,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// скорость вентиляции
         /// </summary>
-        public double GetVentilationRate(string typeRoom)
+        public static double GetVentilationRate(string typeRoom)
         {
             throw new NotImplementedException();
         }
@@ -59,7 +136,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// перепад температур между помещением и улицей
         /// </summary>
-        public double GetdTSity(string sity)
+        public static double GetdTSity(string sity)
         {
             throw new NotImplementedException();
         }
@@ -67,7 +144,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// мощность одной секции радиатора
         /// </summary>
-        public double GetPowerOneSectionsRadiator(string typeRadiator)
+        public static double GetPowerOneSectionsRadiator(string typeRadiator)
         {
             throw new NotImplementedException();
         }
@@ -75,7 +152,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// внутренний диаметр трубы
         /// </summary>
-        public int GetInnerDiameterPipe(int boilerPower)
+        public static int GetInnerDiameterPipe(int boilerPower)
         {
             throw new NotImplementedException();
         }
@@ -83,7 +160,7 @@ namespace CalculationProfitHeat
         /// <summary>
         /// давление насоса
         /// </summary>
-        public int GetPumpPressure(int countRadiator)
+        public static int GetPumpPressure(int countRadiator)
         {
             throw new NotImplementedException();
         }

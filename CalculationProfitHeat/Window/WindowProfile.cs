@@ -27,7 +27,7 @@ namespace CalculationProfitHeat
         public WindowProfile(double area, int countCameras)
         {
             Area = area;
-            HeatResistance = new WorkWithDatabase().GetCoefficientThermalResistance(CountCameras);
+            HeatResistance = WorkWithDatabase.GetCoefficientThermalResistance(CountCameras);
         }
 
         /// <summary>

@@ -75,7 +75,7 @@ namespace CalculationProfitHeat
         /// </summary>
         public int GetCountSections(string typeRadiator)
         {
-            double powerOneSectionsRadiator = new WorkWithDatabase().GetPowerOneSectionsRadiator(typeRadiator);
+            double powerOneSectionsRadiator = WorkWithDatabase.GetPowerOneSectionsRadiator(typeRadiator);
             return CountSections = (int)Math.Ceiling(HeatLoss / powerOneSectionsRadiator);
         }
     }

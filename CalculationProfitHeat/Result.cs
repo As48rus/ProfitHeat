@@ -31,7 +31,7 @@ namespace CalculationProfitHeat
 
         public Result(string sity, List<Room> rooms)
         {
-            dT = new WorkWithDatabase().GetdTSity(sity);
+            dT = WorkWithDatabase.GetdTSity(sity);
             Rooms = rooms;
             BoilerOutput = GetBoilerOutput();
         }
@@ -50,14 +50,14 @@ namespace CalculationProfitHeat
         /// </summary>
         public int GetDiameterCoolant()
         {
-            return DiameterCoolant = new WorkWithDatabase().GetInnerDiameterPipe(BoilerOutput);
+            return DiameterCoolant = WorkWithDatabase.GetInnerDiameterPipe(BoilerOutput);
         }
         /// <summary>
         /// рассчитать тип насоса
         /// </summary>
         public string GetPumpCapacity()
         {
-            int pumpPressure = new WorkWithDatabase().GetPumpPressure(GetCountRadiator());
+            int pumpPressure = WorkWithDatabase.GetPumpPressure(GetCountRadiator());
 
             return TypeCapacity = DiameterCoolant + " / " + pumpPressure;
         }

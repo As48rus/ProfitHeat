@@ -22,7 +22,7 @@ namespace CalculationProfitHeat
 
         public Ventilation(string typeRoom, double v)
         {
-            K = new WorkWithDatabase().GetVentilationRate(typeRoom);
+            K = WorkWithDatabase.GetVentilationRate(typeRoom);
             V = v;
         }
         /// <summary>

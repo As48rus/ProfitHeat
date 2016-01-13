@@ -19,7 +19,9 @@ namespace ProfitHeat
         public Form_User()
 		{
 			InitializeComponent();
-		}
+            comboBox_sity.DataSource = WorkWithDatabase.GetAllSity();
+
+        }
 
         private void button_Sum_Click(object sender, EventArgs e)
         {
@@ -35,7 +37,8 @@ namespace ProfitHeat
         private void AddRoom_Click(object sender, EventArgs e)
         {
             Form_AddRoom addRoom = new Form_AddRoom(_rooms);
-            addRoom.ShowDialog();
+            if(addRoom.ShowDialog() == DialogResult.OK)
+                MessageBox.Show("Комната" + _rooms.Last().Name + "добавлена!");
         }
         private void AddRowsDGW()
         {
