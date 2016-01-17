@@ -47,18 +47,14 @@ namespace CalculationProfitHeat
         /// теплосопротивление (м² * °С / Вт)
         /// </summary>
         public double HeatResistance { get; set; }
+        /// <summary>
+        /// например (4-10Ar-4)
+        /// </summary>
+        public string GlazedFormula { get; set; }
 
-		public Glazed(string glazedStr)
+        public Glazed(string glazedStr)
 		{
-            //double area; int glass1; int camera1; int glass2; int camera2; int glass3; Gas gas; bool i_Spraning;
-            //Area = area;
-            //Glass1 = glass1;
-			//Glass2 = glass2;
-			//Glass3 = glass3;
-			//Cameras1 = camera1;
-			//Cameras2 = camera2;
-			//Gas = gas;
-			//I_Spraning = i_Spraning;
+            GlazedFormula = glazedStr;
 
 		}
         /// <summary>
@@ -66,7 +62,7 @@ namespace CalculationProfitHeat
         /// </summary>
         public double GetHeatLoss(double dT)
         {
-            HeatResistance = WorkWithDatabase.GetCoefficientThermalResistance("");
+            HeatResistance = WorkWithDatabase.GetCoefficientThermalResistance(GlazedFormula);
             return Area * (dT) / HeatResistance;
         }
     }

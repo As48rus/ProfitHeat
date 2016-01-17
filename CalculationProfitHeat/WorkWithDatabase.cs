@@ -101,20 +101,82 @@ namespace CalculationProfitHeat
             return GetQueryResultsSelect(request);
         }
 
-        /// <summary>
-        /// Коэффициент теплопроводности (Вт / (м * °С))
-        /// </summary>
-        public static double GetCoefficientThermalConductivity(string nameMaterial)
+        public static double GetQueryResultsSelect(string nameProcedure, object value, string name)
         {
-            throw new NotImplementedException();
+            double result = 0;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand com = new SqlCommand(nameProcedure, con);
+                com.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = name;
+                param.Value = value;
+                if (value is int)
+                    param.SqlDbType = System.Data.SqlDbType.Int;
+                else if(value is string)
+                    param.SqlDbType = System.Data.SqlDbType.NChar;
+                param.Direction = System.Data.ParameterDirection.Input;
+                com.Parameters.Add(param);
+
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                if (reader.Read())
+                    try
+                    {
+                        result = reader.GetDouble(0);
+                    }
+                    catch
+                    {
+                        result = reader.GetInt16(0);
+                    }
+            }
+
+            return result;
+
         }
+
 
         /// <summary>
         /// Коэффициент теплосопротивления (м² * °С / Вт)
         /// </summary>
         public static double GetCoefficientThermalResistance(int countCameras, int thickness)
         {
-            throw new NotImplementedException();
+            double result = 0;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand com = new SqlCommand("GetCoefficientThermalResistanceForProfile", con);
+                com.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@countCameras";
+                param.Value = countCameras;
+                param.SqlDbType = System.Data.SqlDbType.Int;
+                param.Direction = System.Data.ParameterDirection.Input;
+                com.Parameters.Add(param);
+
+                param = new SqlParameter();
+                param.ParameterName = "@thickness";
+                param.Value = thickness;
+                param.SqlDbType = System.Data.SqlDbType.Int;
+                param.Direction = System.Data.ParameterDirection.Input;
+                com.Parameters.Add(param);
+
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                if(reader.Read())
+                    result = reader.GetDouble(0);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Коэффициент теплопроводности (Вт / (м * °С))
+        /// </summary>
+        public static double GetCoefficientThermalConductivity(string nameMaterial)
+        {
+            return GetQueryResultsSelect("GetCoefficientThermalConductivity", nameMaterial, "@nameMaterial");
         }
 
         /// <summary>
@@ -122,7 +184,7 @@ namespace CalculationProfitHeat
         /// </summary>
         public static double GetCoefficientThermalResistance(string formulaGlass)
         {
-            throw new NotImplementedException();
+            return GetQueryResultsSelect("GetCoefficientThermalResistanceForGlazed", formulaGlass, "@formulaGlass");
         }
 
         /// <summary>
@@ -130,15 +192,7 @@ namespace CalculationProfitHeat
         /// </summary>
         public static double GetVentilationRate(string typeRoom)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// перепад температур между помещением и улицей
-        /// </summary>
-        public static double GetdTSity(string sity)
-        {
-            throw new NotImplementedException();
+            return GetQueryResultsSelect("GetVentilationRate", typeRoom, "@typeRoom");
         }
 
         /// <summary>
@@ -146,7 +200,15 @@ namespace CalculationProfitHeat
         /// </summary>
         public static double GetTRoom(string typeRoom)
         {
-            throw new NotImplementedException();
+            return GetQueryResultsSelect("GetTRoom", typeRoom, "@typeRoom");
+        }
+
+        /// <summary>
+        /// перепад температур между помещением и улицей
+        /// </summary>
+        public static double GetdTSity(string sity)
+        {
+            return GetQueryResultsSelect("GetdTSity", sity, "@sity");
         }
 
         /// <summary>
@@ -154,7 +216,25 @@ namespace CalculationProfitHeat
         /// </summary>
         public static double GetPowerOneSectionsRadiator(string typeRadiator)
         {
-            throw new NotImplementedException();
+            return GetQueryResultsSelect("GetPowerOneSectionsRadiator", typeRadiator, "@typeRadiator");
+        }
+        public static List<Pipe> GetQueryResultsSelectDiametr(string request)
+        {
+            List<Pipe> result = new List<Pipe>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                SqlCommand com = new SqlCommand(request, con);
+                con.Open();
+                SqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    int diamtr = dr.GetByte(0);
+                    int power = dr.GetInt32(1);
+                    result.Add(new Pipe(diamtr, power));
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -162,7 +242,13 @@ namespace CalculationProfitHeat
         /// </summary>
         public static int GetInnerDiameterPipe(int boilerPower)
         {
-            throw new NotImplementedException();
+            string queryStr = "SELECT Diametr, BoilerPower FROM Pipes";
+            List<Pipe> result = GetQueryResultsSelectDiametr(queryStr);
+
+            foreach (var pipe in result)
+                if (pipe.PowerBoiler > boilerPower)
+                    return pipe.Diametr;
+            return 0;
         }
 
         /// <summary>
@@ -173,4 +259,15 @@ namespace CalculationProfitHeat
             throw new NotImplementedException();
         }
     }
+    public class Pipe
+    {
+        public int Diametr { get; set; }
+        public int PowerBoiler { get; set; }
+        public Pipe(int diamtr, int powerBoiler)
+        {
+            Diametr = diamtr;
+            PowerBoiler = powerBoiler;
+        }
+    }
+
 }

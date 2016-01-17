@@ -84,7 +84,7 @@ namespace ProfitHeat
         {
             double area = Convert.ToDouble(dgw[0, 0].Value);
             Cladding cladding = new Cladding(area);
-            for (int i = 0; i < dgw.RowCount; i++)
+            for (int i = 0; i < dgw.RowCount - 1; i++)
             {
                 double thickness = Convert.ToDouble(dgw[1, i].Value);
                 string nameMaterial = dgw[2, i].Value.ToString();
@@ -96,7 +96,7 @@ namespace ProfitHeat
         private List<Window> GetWindows(DataGridView dgw)
         {
             List<Window> windows = new List<Window>();
-            for (int i = 0; i < dgw.RowCount; i++)
+            for (int i = 0; i < dgw.RowCount -1; i++)
             {
                 double area = Convert.ToDouble(dgw[0, i].Value);
                 Glazed glazed = new Glazed(dgw[1,i].Value.ToString());

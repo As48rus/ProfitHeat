@@ -57,9 +57,11 @@ namespace CalculationProfitHeat
         /// </summary>
         public string GetPumpCapacity()
         {
-            int pumpPressure = WorkWithDatabase.GetPumpPressure(GetCountRadiator());
+            //int pumpPressure = WorkWithDatabase.GetPumpPressure(GetCountRadiator());
 
-            return TypeCapacity = DiameterCoolant + " / " + pumpPressure;
+            //return TypeCapacity = DiameterCoolant + " / " + pumpPressure;
+
+            return "тип насоса";
         }
 
         private int GetCountRadiator()

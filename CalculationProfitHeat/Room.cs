@@ -67,6 +67,7 @@ namespace CalculationProfitHeat
             foreach (var window in Windows)
                 HeatLoss += window.GetHeatLoss(dT);
 
+            Ventilation = new Ventilation(TypeRoom, 50); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             HeatLoss += Ventilation.GetHeatLoss(dT);
 
             return HeatLoss;

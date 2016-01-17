@@ -38,7 +38,7 @@ namespace ProfitHeat
         {
             Form_AddRoom addRoom = new Form_AddRoom(_rooms);
             if(addRoom.ShowDialog() == DialogResult.OK)
-                MessageBox.Show("Комната" + _rooms.Last().Name + "добавлена!");
+                MessageBox.Show("Комната " + _rooms.Last().Name + " добавлена!");
         }
         private void AddRowsDGW()
         {
