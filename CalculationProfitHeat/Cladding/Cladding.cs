@@ -34,6 +34,8 @@ namespace CalculationProfitHeat
             double sumR = 0;
             foreach (var material in Materials)
                 sumR += material.HeatResistance();
+            if (Area == 0 || sumR == 0)
+                return 0;
             return Area * (dT) / sumR;
         }
 
