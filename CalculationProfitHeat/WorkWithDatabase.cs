@@ -255,9 +255,28 @@ namespace CalculationProfitHeat
         /// <summary>
         /// давление насоса
         /// </summary>
-        public static int GetPumpPressure(int countRadiator)
+        public static int GetPumpPressure(double resistanceCalculated)
         {
-            throw new NotImplementedException();
+            int result = 0;
+            ///выбор насоса по сопротивлению
+            var resistances = new[] 
+            {
+                new { rated = 2, calculated = 2.0},
+                new { rated = 4, calculated = 3.3},
+                new { rated = 6, calculated = 5.2},
+                new { rated = 7, calculated = 6.3},
+                new { rated = 8, calculated = 7.5}
+            };
+
+            for (int i = 0; i < resistances.Length; i++)
+            {
+                if(resistanceCalculated < resistances[i].calculated)
+                {
+                    result = resistances[i].rated;
+                    break;
+                }
+            }
+            return result;
         }
     }
     public class Pipe
