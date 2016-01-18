@@ -70,6 +70,8 @@ namespace CalculationProfitHeat
             Ventilation = new Ventilation(TypeRoom, 50); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             HeatLoss += Ventilation.GetHeatLoss(dT);
 
+            CountSections = GetCountSections(RadiatorType);
+
             return HeatLoss;
         }
         /// <summary>

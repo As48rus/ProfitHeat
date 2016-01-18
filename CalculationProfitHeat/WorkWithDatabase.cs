@@ -218,6 +218,7 @@ namespace CalculationProfitHeat
         {
             return GetQueryResultsSelect("GetPowerOneSectionsRadiator", typeRadiator, "@typeRadiator");
         }
+
         public static List<Pipe> GetQueryResultsSelectDiametr(string request)
         {
             List<Pipe> result = new List<Pipe>();
